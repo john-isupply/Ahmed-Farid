@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp</title>
+    <link rel="stylesheet" href="whatsapp.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="./send message_files/isupply_logo_light.png" alt="iSupply Logo" width="450" height="142">
+            <button class="settings-button" onclick="toggleSettings()">Settings</button>
+            <button class="sheet-button" onclick="openGoogleSheet()">Open Google Sheet</button>
+            <!-- زر لتحديث البيانات -->
+            <button class="refresh-button" onclick="refreshData()">Refresh Data</button>
+        </div>
+        <div class="content">
+            <div class="form-container">
+                <form id="whatsapp-form">
+                    <label for="whatsapp-number">Customer Phone:</label>
+                    <input type="text" id="whatsapp-number" name="whatsapp-number" placeholder="Customer Phone" required>
+
+                    <label for="preset-message">Select a preset message:</label>
+                    <div class="message-list">
+                        <div class="message-item" onclick="selectMessage(1)">الغاء الاوردر</div>
+                        <div class="message-item selected" onclick="selectMessage(2)">تكمله الاوردر</div>
+                        <div class="message-item" onclick="selectMessage(3)">كوته</div>
+                        <div class="message-item" onclick="selectMessage(4)">فرق خصم</div>
+                    </div>
+
+                    <label for="line1">Seller Name:</label>
+                    <input type="text" id="line1" name="line1" placeholder="Seller Name" required>
+
+                    <label for="line2">Item Name:</label>
+                    <textarea id="line2" name="line2" placeholder="Item Name" required></textarea>
+
+                    <label for="line3" id="line3-label" style="display: none;"></label>
+                    <input type="text" id="line3" name="line3" placeholder="Enter Line 3" style="display: none;">
+
+                    <label for="line4">Grand Total:</label>
+                    <input type="text" id="line4" name="line4" placeholder="Grand Total" required>
+
+                    <label for="line5">Min Order:</label>
+                    <input type="text" id="line5" name="line5" placeholder="Min Order" required>
+                    
+                    <label for="order-id">Order ID:</label>
+                    <input type="text" id="order-id" name="order-id" placeholder="Order ID" required>
+
+                    <label for="contact-dropdown">Select Contact:</label>
+                    <select id="contact-dropdown" name="contact-dropdown" onchange="updateFixedNumber()">
+                        <option value="">--Select--</option>
+                        <option value="+201050971225">Yasser Hareth</option>
+                        <option value="+201103082260">Ahmed Saeed</option>
+                    </select>
+
+                    <button type="button" id="send-message-button" onclick="sendMessage()">Send Message</button>
+                    <button type="button" id="send-link-button" onclick="sendLink()">Send Link</button>
+                </form>
+                <a id="whatsapp-link" href="#" target="_blank" style="display: none;">Open WhatsApp Chat</a>
+                <a id="fixed-whatsapp-link" href="#" target="_blank" style="display: none;">Open Fixed WhatsApp Chat</a>
+            </div>
+            <div class="preview-container">
+                <h2>Message Preview</h2>
+                <textarea id="message-preview" style="width: 100%;height: 100%;font-size: 30px;"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-container" id="settings-container">
+        <h2>Edit Messages</h2>
+        <form id="settings-form" class="settings-form">
+            <label for="message1">Message 1:</label>
+            <textarea id="message1" rows="4"></textarea>
+
+            <label for="message2">Message 2:</label>
+            <textarea id="message2" rows="4"></textarea>
+
+            <label for="message3">Message 3:</label>
+            <textarea id="message3" rows="4"></textarea>
+
+            <label for="message4">Message 4:</label>
+            <textarea id="message4" rows="4"></textarea>
+
+            <button type="button" onclick="saveSettings()">Save Settings</button>
+        </form>
+    </div>
+
+    <script src="whatsapp.js"></script>
+</body>
+</html>
